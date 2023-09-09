@@ -1,0 +1,27 @@
+function longestSubStrWithoutRepChars(input){
+
+    var maxLen = 0, start = 0, end = 0;
+    for(var i=0; i<input.length; i++){
+        var helper = {};
+        for(var j=i; j<input.length; j++){
+            if(helper[input[j]]){
+                var currLen = j-i;
+                if(currLen > maxLen){
+                    maxLen = currLen;
+                    start = i;
+                    end = j-1;
+                }
+                    
+                break;
+            }else {
+                helper[input[j]] = true;
+            }
+        }
+    }
+
+    console.log(input.substring(start,end+1));
+    return maxLen;
+}
+
+
+console.log(longestSubStrWithoutRepChars("pwwkew"));
