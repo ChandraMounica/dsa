@@ -1,0 +1,36 @@
+var twoSum = function(arr, k){
+
+    arr.sort((a,b) => a-b);
+    var isChecked = {};
+    for(var i=0; i<arr.length; i++){
+        var key = k-arr[i];
+        //to avoid duplicate pairs
+        if(!isChecked[arr[i]] && !isChecked[key])
+        {
+            if(bSearch(arr, key, i+1, arr.length-1)){
+                console.log(`[${arr[i]},${key}]`);
+            }
+            isChecked[arr[i]] = true;
+            isChecked[key] = true;
+        }
+        
+    }
+
+}
+
+function bSearch(arr, key, low, high){
+    while(low <= high) {        
+        var mid = Math.floor(low + (high - low)/2);
+        if(arr[mid] == key)
+            return true;
+        if(key < arr[mid])
+            high = mid-1;
+        else
+            low = mid+1;
+    }
+    return false;
+}
+
+twoSum([3,1,2,4,7,8,6,5],9);
+console.log("-----------------------------");
+twoSum([4,3,2,1,3,5,3],6);
