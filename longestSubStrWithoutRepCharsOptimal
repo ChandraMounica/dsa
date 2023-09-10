@@ -1,0 +1,24 @@
+function longestSubStrWithoutRepChars(input){
+
+var maxLen = 0,start,end;
+var charSet = new Set(), left = 0;
+for(var i=0; i<input.length; i++){
+
+    while(charSet.has(input[i])) {
+        charSet.delete(input[left])
+        left++;
+    }
+    charSet.add(input[i]);
+    if(i-left+1 > maxLen){
+        start = left;
+        end = i;
+        maxLen = i-left+1
+    }
+
+}
+console.log(input.substring(start,end+1));
+return maxLen;
+
+}
+
+console.log(longestSubStrWithoutRepChars("abcabcbb"));
