@@ -5,16 +5,20 @@ function longestSubStrWithoutRepChars(input){
         var helper = {};
         for(var j=i; j<input.length; j++){
             if(helper[input[j]]){
-                var currLen = j-i;
-                if(currLen > maxLen){
-                    maxLen = currLen;
+                if(j-i > maxLen){
+                    maxLen = j-i;
                     start = i;
                     end = j-1;
-                }
-                    
+                }                    
                 break;
             }else {
                 helper[input[j]] = true;
+                if(j-i+1 > maxLen){
+                    maxLen = j-i+1;
+                    start = i;
+                    end = j;
+                }
+
             }
         }
     }
@@ -24,4 +28,4 @@ function longestSubStrWithoutRepChars(input){
 }
 
 
-console.log(longestSubStrWithoutRepChars("pwwkew"));
+console.log(longestSubStrWithoutRepChars("au"));
